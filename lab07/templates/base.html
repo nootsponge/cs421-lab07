@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+    <title>CS 421 - Lab 07</title>
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/modern-normalize@2.0.0/modern-normalize.css"
+    />
+    <style>
+        .flash {
+            background-color: #c7e4ff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body style="margin: 0 2em">
+    <nav style="display: flex; flex-direction: column; gap: 1em">
+        <div
+            style="
+                display: flex;
+                flex-direction: row;
+                gap: 1em;
+                align-items: center;
+            "
+        >
+            <h1 style="margin-bottom: 0">CS 421 - Lab 07</h1>
+            {% if user %}
+            <p style="margin-bottom: 0">Logged in as {{ user.email }}</p>
+            {% endif %}
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.25em">
+            <a href="{{ url_for('main.index') }}">Home</a>
+            <a href="{{ url_for('main.secretpage') }}">Secret Page</a>
+            {% if not user %}<a href="{{ url_for('main.login') }}">Login</a>
+            <a href="{{ url_for('main.register') }}">Register</a>{% else %}
+            <a href="{{ url_for('main.logout') }}">Logout</a>{% endif %}
+        </div>
+    </nav>
+    <section class="content">
+        <header>{% block header %}{% endblock %}</header>
+        {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %} {% block content %}{% endblock %}
+    </section>
+
+    <p>
+        <a
+            href="https://unix.stackexchange.com/questions/92185/whats-the-story-behind-super-cow-powers"
+            >This webpage does not have Super Cow Powers.</a
+        >
+    </p>
+</body>

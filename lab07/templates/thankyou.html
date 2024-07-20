@@ -1,0 +1,5 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Thank you</h2>
+{% for user in users %}
+<p>Thank you, {{ user.first_name }} {{ user.last_name }}, for registering!</p>
+{% endfor %} {% endblock %}

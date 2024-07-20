@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Register</h2>
+<form style="display: flex; flex-direction: column; gap: 1em" method="POST">
+    <div>
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="first_name" required />
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="last_name" required />
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+        <label for="confirm_password">Confirm Password</label>
+        <input
+            type="password"
+            id="confirm_password"
+            name="confirm_password"
+            required
+        />
+    </div>
+    <div>
+        <button type="submit">Register</button>
+    </div>
+</form>
+
+<script>
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        form.checkValidity();
+
+        // verify password
+        const password = document.getElementById("password").value;
+        const confirm_password =
+            document.getElementById("confirm_password").value;
+        if (password !== confirm_password) {
+            alert("Passwords do not match");
+            return;
+        }
+
+        form.submit();
+    });
+</script>
+{% endblock %}
